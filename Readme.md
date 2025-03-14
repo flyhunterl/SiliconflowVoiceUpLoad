@@ -3,6 +3,7 @@
 ## 简介
 
 这是一个用于上传参考音频创建自定义音色的工具，适用于硅基流动API。通过简单的界面操作，您可以轻松上传音频文件，创建专属于您的AI语音音色。
+[硅基流动文档](https://docs.siliconflow.cn/cn/userguide/capabilities/text-to-speech#5)
 
 
 ## 功能特点
@@ -90,14 +91,15 @@ A: 支持常见的音频格式，如mp3、wav、ogg等。
 4. 推送到分支 (`git push origin feature/amazing-feature`)
 5. 开启一个Pull Request
 
-## 许可证
-
-本项目采用MIT许可证 - 详见[LICENSE](LICENSE)文件
 ## 打赏
 
 如果您觉得这个项目对您有帮助，欢迎打赏支持作者继续维护和开发更多功能！
 
 ![20250314_125818_133_copy](https://github.com/user-attachments/assets/33df0129-c322-4b14-8c41-9dc78618e220)
+
+## 许可证
+
+本项目采用MIT许可证 - 详见[LICENSE](LICENSE)文件
 
 ## 联系方式
 
