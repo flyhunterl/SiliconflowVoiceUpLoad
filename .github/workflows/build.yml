@@ -26,17 +26,28 @@ jobs:
         pip install pyinstaller
         pip install -r requirements.txt
     
+    - name: Debug Environment
+      run: |
+        dir
+        python --version
+        pip list
+    
     - name: Build with PyInstaller
       run: |
-        dir  # 显示当前目录文件列表
         pyinstaller --name="voice_upload_tool" --windowed --icon="icon.ico" voice_upload_tool_gradio.py
-        dir dist  # 确认生成的文件
+        dir dist
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: voice_upload_tool
+        path: dist/voice_upload_tool.exe
     
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
-        files: ./dist/voice_upload_tool.exe
+        files: dist/voice_upload_tool.exe
         name: 参考音色上传工具 ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
         draft: false
