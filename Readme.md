@@ -93,6 +93,11 @@ A: 支持常见的音频格式，如mp3、wav、ogg等。
 ## 许可证
 
 本项目采用MIT许可证 - 详见[LICENSE](LICENSE)文件
+## 打赏
+
+如果您觉得这个项目对您有帮助，欢迎打赏支持作者继续维护和开发更多功能！
+
+![20250314_125818_133_copy](https://github.com/user-attachments/assets/33df0129-c322-4b14-8c41-9dc78618e220)
 
 ## 联系方式
 
