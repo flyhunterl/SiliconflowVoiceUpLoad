@@ -26,7 +26,7 @@ jobs:
     - name: Build with PyInstaller
       run: |
         dir  # 显示当前目录文件列表
-        pyinstaller --name="参考音色上传工具" --windowed --icon="${{ github.workspace }}/icon.ico" voice_upload_tool_gradio.py
+        pyinstaller --name="参考音色上传工具" --windowed --icon="icon.ico" voice_upload_tool_gradio.py
     
     - name: Create Release
       uses: softprops/action-gh-release@v1
