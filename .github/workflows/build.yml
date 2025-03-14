@@ -27,12 +27,14 @@ jobs:
       run: |
         dir  # 显示当前目录文件列表
         pyinstaller --name="参考音色上传工具" --windowed --icon="icon.ico" voice_upload_tool_gradio.py
+        dir dist  # 确认生成的文件
     
     - name: Create Release
+      id: create_release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: |
-          dist/参考音色上传工具.exe
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        files: ./dist/参考音色上传工具.exe
+        token: ${{ secrets.GITHUB_TOKEN }}
+        draft: false
+        prerelease: false 
