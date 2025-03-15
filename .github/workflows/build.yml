@@ -4,13 +4,13 @@ on:
   push:
     tags:
       - 'v*'
-  workflow_dispatch:  # 添加手动触发选项
+  workflow_dispatch:  
 
 jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: write  # 明确指定写入内容的权限
+      contents: write  
 
     steps:
     - uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'  # 使用稳定版 Python 3.9
+        python-version: '3.9'  
     
     - name: Install dependencies
       run: |
@@ -55,7 +55,7 @@ jobs:
         dir
     
     - name: Upload artifact
-      uses: actions/upload-artifact@v4  # 更新为 v4 版本
+      uses: actions/upload-artifact@v4  
       with:
         name: 参考音色上传工具
         path: |
@@ -76,4 +76,4 @@ jobs:
     - name: Debug Files
       run: |
         dir dist /s
-        echo "Listing all files in dist directory recursively" 什么问题 中文会打我
+        echo "Listing all files in dist directory recursively" 
