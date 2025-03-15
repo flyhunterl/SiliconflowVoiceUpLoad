@@ -17,18 +17,9 @@
 
 ## 安装方法
 
-### 方法一：直接下载可执行文件（构建exe没成功,不折腾了 请用方法二）
-
-1. 从[发布页面](https://github.com/flyhunterl/SiliconflowVoiceUpLoad/releases)下载最新版本的可执行文件
-2. 解压缩下载的文件
-3. 双击运行`voice_upload_tool.exe`
-
-### 方法二：从源码安装
-
 #### 前提条件
 
 - Python 3.7+
-- Node.js（可选，用于桌面应用）
 
 #### 安装步骤
 
