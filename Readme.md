@@ -36,7 +36,7 @@
 
 3. 运行程序
    ```
-   python voice_upload_tool_gradio.py
+   python upload.py
    ```
 
 ## 使用方法
