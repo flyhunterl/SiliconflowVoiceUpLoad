@@ -17,13 +17,13 @@
 
 ## 安装方法
 
-### 方法一：直接下载可执行文件（构建一直有问题，不管了 用方法二吧）
+### 方法一：直接下载可执行文件（没测试过）
 
 1. 从[发布页面](https://github.com/flyhunterl/SiliconflowVoiceUpLoad/releases)下载最新版本的可执行文件
 2. 解压缩下载的文件
 3. 双击运行`voice_upload_tool.exe`
 
-### 方法二：从源码安装
+### 方法二：从源码安装(有python环境的直接运行start_app.bat就行)
 
 #### 前提条件
 
