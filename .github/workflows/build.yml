@@ -34,7 +34,7 @@ jobs:
     
     - name: Build with PyInstaller
       run: |
-        python -m PyInstaller --name="参考音色上传工具" --windowed --icon="icon.ico" voice_upload_tool_gradio.py
+        python -m PyInstaller --name="参考音色上传工具" --onefile --windowed --icon="icon.ico" voice_upload_tool_gradio.py
         dir dist
         dir dist\参考音色上传工具
     
@@ -57,9 +57,13 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          dist/参考音色上传工具.exe
           dist/参考音色上传工具.zip
         name: 参考音色上传工具 ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
         draft: false
-        prerelease: false 
+        prerelease: false
+    
+    - name: Debug Files
+      run: |
+        dir dist /s
+        echo "Listing all files in dist directory recursively" 
