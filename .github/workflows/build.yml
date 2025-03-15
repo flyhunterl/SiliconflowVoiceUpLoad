@@ -4,65 +4,67 @@ on:
   push:
     tags:
       - 'v*'
-  workflow_dispatch:
+  workflow_dispatch:  # 添加手动触发选项
 
 jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: write
+      contents: write  # 明确指定写入内容的权限
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # 使用稳定版 Python 3.9
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pyinstaller
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          pip install -r requirements.txt
 
-    - name: Debug Environment
-      run: |
-        dir
-        python --version
-        pip list
+      - name: Debug Environment
+        run: |
+          dir
+          python --version
+          pip list
 
-    - name: Build with PyInstaller
-      run: |
-        python -m PyInstaller --name="参考音色上传工具" --onefile --windowed --icon="icon.ico" voice_upload_tool_gradio.py
-        dir dist
-        dir dist\参考音色上传工具  # 验证 exe 文件是否在这里
+      - name: Build with PyInstaller
+        run: |
+          python -m PyInstaller --name="参考音色上传工具" --onefile --windowed --icon="icon.ico" voice_upload_tool_gradio.py
+          dir dist
+          dir dist\参考音色上传工具  # 验证 exe 文件是否在这里
 
-    - name: Create ZIP package
-      run: |
-        cd dist
-        powershell Compress-Archive -Path 参考音色上传工具 -DestinationPath 参考音色上传工具.zip
-        dir  # 验证 zip 文件是否创建成功
-        Expand-Archive -Path 参考音色上传工具.zip -DestinationPath extracted_zip #解压 zip 文件
-        dir extracted_zip  #验证 exe 文件是否在解压后的目录中
+      - name: Create ZIP package
+        run: |
+          cd dist
+          powershell Compress-Archive -Path 参考音色上传工具.exe -DestinationPath 参考音色上传工具.zip
+          dir  # 验证 zip 文件是否创建成功
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: 参考音色上传工具_ZIP
-        path: dist/参考音色上传工具.zip
+      - name: Verify ZIP Contents
+        run: powershell "Expand-Archive -Path dist/参考音色上传工具.zip -DestinationPath dist/extracted_zip; if (Test-Path dist/extracted_zip/参考音色上传工具.exe) { Write-Host 'ZIP file contains the .exe file.' } else { Write-Error 'ZIP file does NOT contain the .exe file!' }"
 
-    - name: Create Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: dist/参考音色上传工具.zip
-        name: 参考音色上传工具 ${{ github.ref_name }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        draft: false
-        prerelease: false
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: 参考音色上传工具_ZIP
+          path: dist/参考音色上传工具.zip
 
-    - name: Debug Files
-      run: |
-        dir dist /s
-        echo "Listing all files in dist directory recursively"
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/参考音色上传工具.zip
+          name: 参考音色上传工具 ${{ github.ref_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+          prerelease: false
+
+      - name: Debug Files
+        run: |
+          dir dist /s
+          echo "Listing all files in dist directory recursively"
