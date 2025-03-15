@@ -36,18 +36,29 @@ jobs:
       run: |
         python -m PyInstaller --name="voice_upload_tool" --windowed --icon="icon.ico" voice_upload_tool_gradio.py
         dir dist
+        dir dist\voice_upload_tool
+    
+    - name: Create ZIP package
+      run: |
+        cd dist
+        powershell Compress-Archive -Path voice_upload_tool -DestinationPath voice_upload_tool.zip
+        dir
     
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: voice_upload_tool
-        path: dist/voice_upload_tool.exe
+        path: |
+          dist/voice_upload_tool.exe
+          dist/voice_upload_tool/
     
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
-        files: dist/voice_upload_tool.exe
+        files: |
+          dist/voice_upload_tool.exe
+          dist/voice_upload_tool.zip
         name: 参考音色上传工具 ${{ github.ref_name }}
         token: ${{ secrets.GITHUB_TOKEN }}
         draft: false
