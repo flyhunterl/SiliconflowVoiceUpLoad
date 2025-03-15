@@ -11,10 +11,20 @@ jobs:
     runs-on: windows-latest
     permissions:
       contents: write  # 明确指定写入内容的权限
-    
+
     steps:
     - uses: actions/checkout@v4
     
+    - name: Clean Cache
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.npm
+          ~/.cache
+        key: ${{ runner.os }}-cache-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-cache-
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
