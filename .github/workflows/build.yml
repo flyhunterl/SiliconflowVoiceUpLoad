@@ -45,7 +45,7 @@ jobs:
         dir
     
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # 更新为 v4 版本
       with:
         name: 参考音色上传工具
         path: |
@@ -66,4 +66,4 @@ jobs:
     - name: Debug Files
       run: |
         dir dist /s
-        echo "Listing all files in dist directory recursively"
+        echo "Listing all files in dist directory recursively" 什么问题 中文会打我
