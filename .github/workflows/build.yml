@@ -42,6 +42,11 @@ jobs:
         python --version
         pip list
     
+    - name: Create dist directory
+      run: |
+        mkdir dist
+        mkdir dist\参考音色上传工具
+    
     - name: Build with PyInstaller
       run: |
         python -m PyInstaller --name="参考音色上传工具" --onefile --windowed --icon="icon.ico" voice_upload_tool_gradio.py
@@ -76,4 +81,4 @@ jobs:
     - name: Debug Files
       run: |
         dir dist /s
-        echo "Listing all files in dist directory recursively" 
+        echo "Listing all files in dist directory recursively"
