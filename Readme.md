@@ -17,7 +17,7 @@
 
 ## 安装方法
 
-### 方法一：直接下载可执行文件（推荐）
+### 方法一：直接下载可执行文件（构建一直有问题，不管了 用方法二吧）
 
 1. 从[发布页面](https://github.com/flyhunterl/SiliconflowVoiceUpLoad/releases)下载最新版本的可执行文件
 2. 解压缩下载的文件
